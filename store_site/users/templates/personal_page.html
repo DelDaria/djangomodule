@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} My info {% endblock %}
+
+{% block content %}
+    <p> Username: {{ user.username }} </p>
+    <p> Email: {{ user.email }}</p>
+{% if user.is_authenticated and not user.is_superuser%}
+    <p> Cash: {{ user.cash }}</p>
+{% endif %}
+{% endblock %}

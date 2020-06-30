@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Warning Page{% endblock %}
+
+{% block content%}
+
+{% if product.amount < 0 %}
+    <p>!!! We don't have enough products :C</p>
+{% elif user.cash < 0 %}
+    <p>!!! You don't have enough money :C</p>
+{% endif %}
+
+<div style="text-align: center;">
+    <form method="get" action="">
+        <input type="submit" value="To the list of products">
+    </form>
+</div>
+
+{% endblock %}
+

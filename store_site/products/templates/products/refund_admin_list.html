@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Refund Admin List{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-5">
+        {% for refund in refund_list.all %}
+            <p>Customer: {{ refund.purchase.user.username }}</p>
+            <p>Refund: {{ refund.purchase.product.name }}</p>
+            <p>Amount: {{ refund.purchase.amount }}</p>
+            <p>Price: {{ refund.purchase.product.price }}</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type='hidden' name='refund_id' value='{{ refund.id }}'>
+
+                <input type="submit" value="Approve" name="approve">
+
+                <input type="submit" value="Decline" name="decline">
+            </form>
+
+            {% if not forloop.last %}
+                <hr style="border-top: 1px solid rgb(66,66,66)"/>
+            {% endif %}
+        {% empty %}
+            <p>no refunds c: </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

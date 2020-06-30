@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Purchase List{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col-5">
+{% for purchase in purchase_list.all %}
+            <p><h4>{{ purchase.product }}</h4></p>
+            <p>Amount: {{ purchase.amount }}</p>
+            <p>Date: {{ purchase.created_at }}</p>
+
+            <p>Customer: {{ purchase.user }}</p>
+            {% if  purchase.get_time_diff < 180 %}
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <label> Refund this purchase: </label>
+                    <input type='hidden' name='purchase_id' value='{{ purchase.id }}'>
+                    <input type="submit" name='Refund' value="Refund">
+                </form>
+            {% else %}
+                <p>You can't return your purchase.</p>
+                    <form action="" method="post">
+                    {% csrf_token %}
+                    <label> Refund this purchase: </label>
+                    <input disabled="disabled" type="submit" value="Refund">
+                </form>
+            {% endif %}
+{% endfor%}
+    </div>
+</div>
+{% endblock %}
+
