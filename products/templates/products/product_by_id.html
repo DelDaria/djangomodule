@@ -4,19 +4,12 @@
 
 {% block content %}
     <div class="container">
-
         <h1>{{ product.name }}</h1>
         <div>{{ product.description }}</div>
+        <p><img src="{{ product.picture.url }}" alt="Ooops" width="200px"></p>
         <hr/>
 
         <br/>
-<!--        {% if user.is_authenticated %}-->
-<!--            <form id="like_form" method="post">-->
-<!--                {% csrf_token %}-->
-<!--                <button type="submit " class="btn btn-danger">&#9829; <span-->
-<!--                        id="likes_count">{{ article.likes_set.count }}</span></button>-->
-<!--            </form>-->
-<!--        {% endif %}-->
     </div>
 
 {% endblock %}
